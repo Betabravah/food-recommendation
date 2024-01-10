@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:gebeta/features/auth/data/datasource/remote/remote_datasource.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../../core/constants/constants.dart';
@@ -9,6 +8,7 @@ import '../../../../../core/error/exceptions.dart';
 import '../../models/authenticaion_model.dart';
 import '../../models/login_model.dart';
 import '../../models/signup_model.dart';
+import 'remote_datasource.dart';
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   final http.Client client;
