@@ -37,8 +37,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<SignupModel> signUp(
-      SignupModel signUpRequestModel) async {
+  Future<SignupModel> signup(SignupModel signUpRequestModel) async {
     final http.Response response = await client.post(
         Uri.parse('${apiBaseUrl}user'),
         body: jsonEncode(signUpRequestModel.toJson()),

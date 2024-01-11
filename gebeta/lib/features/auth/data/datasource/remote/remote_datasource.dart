@@ -13,7 +13,7 @@ abstract class AuthRemoteDataSource {
   ///
   /// Throws a [ServerException] for server errors
   /// Throws a [SignUpException] for sign up errors
-  Future<SignupModel> signUp(SignupModel signUpRequestModel);
+  Future<SignupModel> signup(SignupModel signUpRequestModel);
 
   /// Returns [void] after a successful logout
   ///
