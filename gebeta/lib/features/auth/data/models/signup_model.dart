@@ -4,7 +4,7 @@ class SignupModel extends SignupEntity {
   const SignupModel(
       {required super.firstName,
       required super.lastName,
-      required super.email,
+      required super.username,
       required super.password,
       required super.height,
       required super.weight,
@@ -21,7 +21,7 @@ class SignupModel extends SignupEntity {
     return SignupModel(
       firstName: json['firstName'],
       lastName: json['lastName'],
-      email: json['email'],
+      username: json['username'],
       password: json['password'],
       height: json['height'],
       weight: json['weight'],
@@ -40,7 +40,7 @@ class SignupModel extends SignupEntity {
     return {
       'firstName': firstName,
       'lastName': lastName,
-      'email': email,
+      'username': username,
       'password': password,
       'height': height,
       'weight': weight,

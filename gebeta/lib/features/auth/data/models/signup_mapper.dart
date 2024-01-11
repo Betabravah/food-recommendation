@@ -4,7 +4,7 @@ import 'signup_model.dart';
 extension on SignupEntity {
   SignupModel toModel() {
     return SignupModel(
-      email: email,
+      username: username,
       password: password,
       firstName: firstName,
       lastName: lastName,

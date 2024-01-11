@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, AuthenticationEntity>> login(
       LoginEntity loginEntity) async {
     LoginModel loginModel = LoginModel(
-      email: loginEntity.email,
+      username: loginEntity.username,
       password: loginEntity.password,
     );
 
@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
         AuthenticationEntity remoteLogin =
             await remoteDataSource.login(loginModel);
         SignupModel user = SignupModel(
-          email: remoteLogin.user.email,
+          username: remoteLogin.user.username,
           firstName: remoteLogin.user.firstName,
           lastName: remoteLogin.user.lastName,
           password: remoteLogin.user.password,
@@ -89,7 +89,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         SignupModel signupModel = SignupModel(
-          email: signUpEntity.email,
+          username: signUpEntity.username,
           password: signUpEntity.password,
           firstName: signUpEntity.firstName,
           lastName: signUpEntity.lastName,

@@ -4,7 +4,7 @@ import 'login_entity.dart';
 extension on LoginEntity {
   LoginModel toLoginModel() {
     return LoginModel(
-      email: email,
+      username: username,
       password: password,
     );
   }

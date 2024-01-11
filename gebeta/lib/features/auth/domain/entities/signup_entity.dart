@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class SignupEntity extends Equatable {
   final String firstName;
   final String lastName;
-  final String email;
+  final String username;
   final String password;
   final double height;
   final double weight;
@@ -19,7 +19,7 @@ class SignupEntity extends Equatable {
   const SignupEntity(
       {required this.firstName,
       required this.lastName,
-      required this.email,
+      required this.username,
       required this.password,
       required this.height,
       required this.weight,
@@ -36,7 +36,7 @@ class SignupEntity extends Equatable {
   List<Object?> get props => [
         firstName,
         lastName,
-        email,
+        username,
         password,
         height,
         weight,
