@@ -10,7 +10,7 @@ class GetToken implements UseCase<void, NoParams> {
   GetToken(this.repository);
 
   @override
-  Future<Either<Failure, void>> call(NoParams params) async {
+  Future<Either<Failure, String>> call(NoParams params) async {
     return await repository.getToken();
   }
 }
