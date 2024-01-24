@@ -5,6 +5,7 @@ class FoodModel extends Food {
       {required super.id,
       required super.name,
       required super.description,
+      required super.photoUrl,
       required super.nutrients});
 
   factory FoodModel.fromJson(Map<String, dynamic> json) {
@@ -12,6 +13,7 @@ class FoodModel extends Food {
         id: json['id'],
         name: json['name'],
         description: json['description'],
+        photoUrl: json['photoUrl'],
         nutrients: List<String>.from(json['nutrients']));
   }
 
@@ -20,6 +22,7 @@ class FoodModel extends Food {
       'id': id,
       'name': name,
       'description': description,
+      'photoUrl': photoUrl,
       'nutrients': nutrients
     };
   }
