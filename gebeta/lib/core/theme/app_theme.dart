@@ -11,14 +11,14 @@ abstract class AppTheme {
   static final themeData = ThemeData(
     // Color Palette
     colorScheme: const ColorScheme(
-      primary: AppColors.pink,
+      primary: AppColors.purple,
       onPrimary: AppColors.white,
-      secondary: AppColors.darkerPink,
+      secondary: AppColors.darkerPurple,
       onSecondary: AppColors.white,
       background: AppColors.gray100,
-      onBackground: AppColors.darkerPink,
+      onBackground: AppColors.darkerPurple,
       surface: AppColors.gray200,
-      onSurface: AppColors.darkerPink,
+      onSurface: AppColors.darkerPurple,
       error: AppColors.red,
       onError: AppColors.white,
       brightness: Brightness.light,
@@ -28,37 +28,44 @@ abstract class AppTheme {
     textTheme: TextTheme(
       // Headings
       titleMedium: const TextStyle(
-        color: AppColors.darkerPink,
+        color: AppColors.darkerPurple,
         fontFamily: 'Poppins',
         fontSize: 24,
         fontWeight: FontWeight.w500,
       ),
       titleLarge: const TextStyle(
         fontFamily: 'Poppins',
-        color: AppColors.darkerPink,
+        color: AppColors.darkerPurple,
         fontSize: 24,
         fontWeight: FontWeight.w600,
       ),
 
       // Body
       bodySmall: const TextStyle(
-        color: AppColors.darkBlue,
+        color: AppColors.darkerPurple,
         fontFamily: 'Poppins',
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
       bodyMedium: const TextStyle(
         fontFamily: 'Poppins',
-        color: AppColors.darkBlue,
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
+        color: AppColors.darkerPurple,
+        fontSize: 25,
+        fontWeight: FontWeight.w500,
+      ),
+
+      bodyLarge: const TextStyle(
+        fontFamily: 'Poppins',
+        color: AppColors.darkerPurple,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
       ),
 
       displayLarge: const TextStyle(
         fontWeight: FontWeight.w900,
-        fontSize: 14,
+        fontSize: 30,
         fontFamily: 'Poppins',
-        color: AppColors.darkBlue,
+        color: AppColors.purple,
       ),
 
       displayMedium: GoogleFonts.urbanist(
@@ -121,7 +128,7 @@ abstract class AppTheme {
         fontFamily: 'Poppins',
         fontSize: 14,
         fontWeight: FontWeight.w400,
-      ),  
+      ),
     ),
 
     actionIconTheme: ActionIconThemeData(

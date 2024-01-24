@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/presentation/route/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -40,9 +42,11 @@ class SplashScreen extends StatelessWidget {
           ),
           ElevatedButton(
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(250, 50)),
+                minimumSize: MaterialStateProperty.all(Size(250.w, 50.h)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.push(Routes.signup);
+              },
               child: const Text('Sign Up')),
           SizedBox(
             height: 30.h,
@@ -67,8 +71,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Define the function to be executed when the button is pressed
-              // You can add your sign-up logic here
+              context.push(Routes.login);
             },
             child: const Text(
               'Sign Up',
@@ -79,7 +82,7 @@ class SplashScreen extends StatelessWidget {
             height: 30.h,
           ),
           Text(
-            'Be healthy 😂',
+            'Be healthy 😊',
             style: Theme.of(context).textTheme.bodySmall,
           )
         ]),
