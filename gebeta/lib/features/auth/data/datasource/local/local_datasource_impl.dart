@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/constants/local_storage.dart';
 import '../../../../../core/error/exceptions.dart';
-import '../../models/signup_model.dart';
+import '../../models/auth_model.dart';
 import 'local_datasource.dart';
 
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
@@ -14,18 +14,18 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   });
 
   @override
-  Future<void> cacheLoggedInUser(SignupModel userToCache) async {
+  Future<void> cacheLoggedInUser(AuthModel userToCache) async {
     final userInfo = jsonEncode(userToCache.toJson());
 
     sharedPreferences.setString(LocalStorageConstants.USERINFO, userInfo);
   }
 
   @override
-  Future<SignupModel> getLoggedInUser() {
+  Future<AuthModel> getLoggedInUser() {
     final userInfo =
         sharedPreferences.getString(LocalStorageConstants.USERINFO);
     if (userInfo != null) {
-      return Future.value(SignupModel.fromJson(jsonDecode(userInfo)));
+      return Future.value(AuthModel.fromJson(jsonDecode(userInfo)));
     } else {
       throw const CacheException(message: 'User info not found');
     }

@@ -1,16 +1,17 @@
 import 'package:equatable/equatable.dart';
 
-import 'signup_entity.dart';
+class AuthEntity extends Equatable {
+  final String username;
+  final String password;
 
-class AuthenticationEntity extends Equatable {
-  final String token;
-  final SignupEntity user;
-
-  const AuthenticationEntity({
-    required this.token,
-    required this.user,
+  const AuthEntity({
+    required this.username,
+    required this.password,
   });
 
   @override
-  List<Object?> get props => [token, user];
+  List<Object?> get props => [
+        username,
+        password,
+      ];
 }

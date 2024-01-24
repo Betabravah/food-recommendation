@@ -1,4 +1,4 @@
-import '../../models/signup_model.dart';
+import '../../models/auth_model.dart';
 
 abstract class AuthLocalDataSource {
   /// Caches a [token] in the local data source
@@ -16,12 +16,12 @@ abstract class AuthLocalDataSource {
   /// Caches a [AuthenticatedUserInfoModel] in the local data source
   ///
   /// Throws a [CacheException] for cache errors
-  Future<void> cacheLoggedInUser(SignupModel userToCache);
+  Future<void> cacheLoggedInUser(AuthModel userToCache);
 
   /// Gets the cached user from the local data source
   ///
   /// Throws a [CacheException] for cache errors
-  Future<SignupModel> getLoggedInUser();
+  Future<AuthModel> getLoggedInUser();
 
   /// Deletes the cached user  and it's data from the local data source
   ///

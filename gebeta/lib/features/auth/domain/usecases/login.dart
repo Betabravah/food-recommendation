@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../entities/auth_entity.dart';
-import '../entities/login_entity.dart';
+import '../entities/authentitcation_entity.dart';
 import '../repository/auth_repository.dart';
 
 class Login implements UseCase<AuthenticationEntity, LoginParams> {
@@ -21,7 +21,7 @@ class Login implements UseCase<AuthenticationEntity, LoginParams> {
 }
 
 class LoginParams extends Equatable {
-  final LoginEntity loginEntity;
+  final AuthEntity loginEntity;
 
   const LoginParams({required this.loginEntity});
 

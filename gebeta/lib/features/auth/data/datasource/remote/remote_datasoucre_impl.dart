@@ -5,9 +5,8 @@ import 'package:http/http.dart' as http;
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/error/exceptions.dart';
+import '../../models/auth_model.dart';
 import '../../models/authenticaion_model.dart';
-import '../../models/login_model.dart';
-import '../../models/signup_model.dart';
 import 'remote_datasource.dart';
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -17,10 +16,10 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   });
 
   @override
-  Future<AuthenticationModel> login(LoginModel loginRequestModel) async {
+  Future<AuthenticationModel> login(AuthModel authModel) async {
     final http.Response response = await client.post(
         Uri.parse('${apiBaseUrl}user/login'),
-        body: jsonEncode(loginRequestModel.toJson()),
+        body: jsonEncode(authModel.toJson()),
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -37,14 +36,14 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<SignupModel> signup(SignupModel signUpRequestModel) async {
+  Future<AuthModel> signup(AuthModel authModel) async {
     final http.Response response = await client.post(
         Uri.parse('${apiBaseUrl}user'),
-        body: jsonEncode(signUpRequestModel.toJson()),
+        body: jsonEncode(authModel.toJson()),
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
-      return SignupModel.fromJson(responseBody['data']);
+      return AuthModel.fromJson(responseBody['data']);
     } else if (response.statusCode == 409 || response.statusCode == 400) {
       throw const SignUpException(message: 'Invalid information');
     } else {

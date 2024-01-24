@@ -3,16 +3,16 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entities/signup_entity.dart';
+import '../entities/auth_entity.dart';
 import '../repository/auth_repository.dart';
 
-class Signup implements UseCase<SignupEntity, SignupParams> {
+class Signup implements UseCase<AuthEntity, SignupParams> {
   final AuthRepository repository;
 
   Signup(this.repository);
 
   @override
-  Future<Either<Failure, SignupEntity>> call(SignupParams params) async {
+  Future<Either<Failure, AuthEntity>> call(SignupParams params) async {
     return await repository.signup(
       params.signupEntity,
     );
@@ -20,11 +20,10 @@ class Signup implements UseCase<SignupEntity, SignupParams> {
 }
 
 class SignupParams extends Equatable {
-  final SignupEntity signupEntity;
+  final AuthEntity signupEntity;
 
   const SignupParams({required this.signupEntity});
 
   @override
   List<Object?> get props => [signupEntity];
 }
-

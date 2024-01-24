@@ -23,7 +23,7 @@ final class AuthLogoutEvent extends AuthEvent {
 }
 
 final class AuthLoginEvent extends AuthEvent {
-  final LoginEntity loginEntity;
+  final AuthEntity loginEntity;
 
   const AuthLoginEvent(this.loginEntity);
 

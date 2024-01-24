@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../../domain/entities/login_entity.dart';
-import '../../domain/entities/signup_entity.dart';
+import '../../domain/entities/auth_entity.dart';
 import '../../domain/usecases/usecases.dart';
 
 part 'auth_event.dart';
@@ -13,7 +12,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Logout logout;
   final Signup signup;
   final GetToken getToken;
-
 
   String? _token;
 
@@ -61,13 +59,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _signup(AuthRegisterEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    final result = await signup(
-      SignupParams(
-        signupEntity: SignupEntity(
+    final result = await signup(SignupParams(
+      signupEntity: AuthEntity(
         username: event.username,
         password: event.password,
-      ),)
-    );
+      ),
+    ));
 
     result.fold(
       (failure) => emit(
@@ -83,14 +80,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     final result = await getToken(NoParams());
 
-    
-
     result.fold(
       (failure) {
         _token = null;
-      emit(
-        const UserAuthState(null)
-      );},
+        emit(const UserAuthState(null));
+      },
       (token) {
         _token = token;
         emit(UserAuthState(token));
