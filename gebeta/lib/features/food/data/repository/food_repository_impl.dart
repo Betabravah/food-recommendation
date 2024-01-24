@@ -57,5 +57,24 @@ class FoodRepositoryImpl implements FoodRepository {
       }
     }
   }
+  @override
+  Future<Either<Failure, List<Food>>> filterFoods(String query) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteFoods = await remoteDataSource.filterFoods(query);
+        localDataSource.cacheFoods(remoteFoods);
+        return Right(remoteFoods);
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localFoods = await localDataSource.getFoods();
+        return Right(localFoods);
+      } catch (e) {
+        return Left(CacheFailure());
+      }
+    }
+  }
 
 }

@@ -5,21 +5,21 @@ import 'package:http/http.dart' as http;
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/error/exceptions.dart';
+import '../../../../../core/network/custom_client.dart';
 import '../../models/auth_model.dart';
 import '../../models/authenticaion_model.dart';
 import 'remote_datasource.dart';
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
-  final http.Client client;
+  final CustomClient client;
   AuthRemoteDataSourceImpl({
     required this.client,
   });
 
   @override
   Future<AuthenticationModel> login(AuthModel authModel) async {
-    final http.Response response = await client.post(
-        Uri.parse('${apiBaseUrl}user/login'),
-        body: jsonEncode(authModel.toJson()),
+    final http.Response response = await client.post('${apiBaseUrl}user/login',
+        body: {'authModel': jsonEncode(authModel.toJson())},
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -37,9 +37,8 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AuthModel> signup(AuthModel authModel) async {
-    final http.Response response = await client.post(
-        Uri.parse('${apiBaseUrl}user'),
-        body: jsonEncode(authModel.toJson()),
+    final http.Response response = await client.post('${apiBaseUrl}user',
+        body: {'authModel': jsonEncode(authModel.toJson())},
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
@@ -53,10 +52,12 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<void> logout(String token) async {
-    final http.Response response = await client.post(
-        Uri.parse('${apiBaseUrl}user/logout'),
-        body: jsonEncode({'token': token}),
-        headers: {'Content-Type': 'application/json'});
+    final http.Response response =
+        await client.post('${apiBaseUrl}user/logout', body: {
+      'token': jsonEncode({'token': token})
+    }, headers: {
+      'Content-Type': 'application/json'
+    });
 
     if (response.statusCode == 200) {
       return;
