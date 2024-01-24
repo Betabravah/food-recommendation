@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/presentation/route/routes.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../widgets/sign_in_dialogue.dart';
 import '../widgets/sign_up_dialogue.dart';
 
 class SignUpPage extends StatelessWidget {
