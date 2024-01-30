@@ -11,7 +11,7 @@ abstract class AppColors {
   static const saturatedPink300 = Color(0xFFCD216E);
   static const darkBlue = Color(0xFF792D4B);
   static const darkerPurple = Color(0xFF0B014C);
-  static const lightPink = Color(0xFFFF6696);
+  static const lightPurple = Color.fromARGB(255, 143, 102, 255);
 
   static const darkGray = Color(0xFF7B8BB2);
 

@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../../../features/auth/presentation/screens/login_page.dart';
 import '../../../features/auth/presentation/screens/signup_page.dart';
 import '../../../features/auth/presentation/screens/splash_screen.dart';
+import '../../../features/food/presentation/screens/home_page.dart';
+import '../../constants/constants.dart';
 import 'routes.dart';
 
 final GoRouter router = GoRouter(
@@ -11,7 +13,7 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: Routes.home,
-      builder: (context, state) => const SplashScreen(),
+      builder: (context, state) => HomePage(foods),
     ),
     GoRoute(
       path: Routes.splash,

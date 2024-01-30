@@ -10,11 +10,17 @@ class FoodModel extends Food {
 
   factory FoodModel.fromJson(Map<String, dynamic> json) {
     return FoodModel(
-        id: json['id'],
-        name: json['name'],
-        description: json['description'],
-        photoUrl: json['photoUrl'],
-        nutrients: List<String>.from(json['nutrients']));
+      id: json['id'],
+      name: json['name'],
+      description: json['description'],
+      photoUrl: json['photoUrl'],
+      nutrients: (json['nutrients'] as Map<String, dynamic>).map(
+        (key, value) => MapEntry(
+          key,
+          value.toDouble(),
+        ),
+      ),
+    );
   }
 
   Map<String, dynamic> toJson() {

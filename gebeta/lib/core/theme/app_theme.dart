@@ -36,7 +36,7 @@ abstract class AppTheme {
       titleLarge: const TextStyle(
         fontFamily: 'Poppins',
         color: AppColors.darkerPurple,
-        fontSize: 24,
+        fontSize: 35,
         fontWeight: FontWeight.w600,
       ),
 

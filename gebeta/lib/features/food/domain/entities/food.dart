@@ -5,9 +5,9 @@ class Food extends Equatable {
   final String name;
   final String description;
   final String photoUrl;
-  final List<String> nutrients;
+  final Map<String, double> nutrients;
 
-  Food({
+  const Food({
     required this.id,
     required this.name,
     required this.description,
