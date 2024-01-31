@@ -33,24 +33,27 @@ class DetailBox extends StatelessWidget {
           Text(
             food.description,
             style: const TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.w200),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300),
             overflow: TextOverflow.visible,
           ),
           SizedBox(
             height: 50.h,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Tag(
                 0,
                 '${food.nutrients['nutrient_kcal']} kcal',
               ),
               SizedBox(
-                width: 10.w,
+                width: 30.w,
               ),
               Tag(1, 'vegan')
             ],
+          ),
+          SizedBox(
+            height: 30.h,
           )
         ],
       )),
