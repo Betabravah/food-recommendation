@@ -8,10 +8,10 @@ import '../../../../../core/network/custom_client.dart';
 import '../../models/user_model.dart';
 import 'remote_datasource.dart';
 
-class RemoteDataSourceImpl implements RemoteDataSource {
+class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   final CustomClient client;
 
-  RemoteDataSourceImpl({
+  UserRemoteDataSourceImpl({
     required this.client,
   });
 
@@ -31,7 +31,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<UserModel> getUser(String token) async {
-    final http.Response response = await client.get('${apiBaseUrl}user',
+    final http.Response response = await client.get('$apiBaseUrl/user/profile',
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -46,8 +46,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<UserModel> updateUser(UserModel user) async {
-    final http.Response response = await client.put(
-      '${apiBaseUrl}user',
+    final http.Response response = await client.post(
+      '$apiBaseUrl/user/profile',
       body: {'user': jsonEncode(user.toJson())},
       headers: {'Content-Type': 'application/json'},
     );

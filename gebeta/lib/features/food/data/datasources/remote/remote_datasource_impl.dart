@@ -6,10 +6,10 @@ import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/network/custom_client.dart';
 import '../../models/food_model.dart';
 
-class RemoteDatasourceImpl implements RemoteDataSource {
+class FoodRemoteDatasourceImpl implements FoodRemoteDataSource {
   final CustomClient client;
 
-  const RemoteDatasourceImpl(this.client);
+  const FoodRemoteDatasourceImpl({required this.client});
 
   @override
   Future<FoodModel> getFood(String id) async {
@@ -30,7 +30,7 @@ class RemoteDatasourceImpl implements RemoteDataSource {
   @override
   Future<List<FoodModel>> getFoods() async {
     try {
-      final response = await client.get('$apiBaseUrl/foods');
+      final response = await client.get('$apiBaseUrl/user/food');
 
       if (response.statusCode == 200) {
         final decoded = jsonDecode(response.body);
@@ -48,7 +48,7 @@ class RemoteDatasourceImpl implements RemoteDataSource {
   Future<List<FoodModel>> filterFoods(String query) async {
     try {
       final response = await client.get(
-          '$apiBaseUrl/foods', queryParams: {'searchParams': query});
+          '$apiBaseUrl/food', queryParams: {'query': query});
 
       if (response.statusCode == 200) {
         final decoded = jsonDecode(response.body);

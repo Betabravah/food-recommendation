@@ -7,10 +7,10 @@ import '../../../../../core/constants/local_storage.dart';
 import '../../../../../core/error/exceptions.dart';
 import '../../models/food_model.dart';
 
-class LocalDatasourceImpl implements LocalDataSource {
+class FoodLocalDatasourceImpl implements FoodLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  const LocalDatasourceImpl(this.sharedPreferences);
+  const FoodLocalDatasourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> cacheFood(FoodModel food) async {

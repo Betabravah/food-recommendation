@@ -18,9 +18,10 @@ class UpdateUser implements UseCase<User, UpdateUserParams> {
 }
 
 class UpdateUserParams extends Equatable {
+  final String token;
   final User user;
 
-  const UpdateUserParams({required this.user});
+  const UpdateUserParams({required this.user, required this.token});
 
   @override
   List<Object?> get props => [user];

@@ -8,8 +8,8 @@ import '../datasources/local/local_datasource.dart';
 import '../datasources/remote/remote_datasoucre.dart';
 
 class FoodRepositoryImpl implements FoodRepository {
-  final RemoteDataSource remoteDataSource;
-  final LocalDataSource localDataSource;
+  final FoodRemoteDataSource remoteDataSource;
+  final FoodLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
   const FoodRepositoryImpl({

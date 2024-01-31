@@ -3,7 +3,7 @@ import 'dart:ui';
 import '../../features/food/domain/entities/food.dart';
 import '../../features/user/domain/entities/user.dart';
 
-const apiBaseUrl = '';
+const apiBaseUrl = 'http://10.5.203.69:5000/api';
 
 User user = const User(
   username: 'sampleUsername',

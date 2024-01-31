@@ -44,6 +44,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
+                      
                       context.push(Routes.login);
                     },
                     child: const Text(

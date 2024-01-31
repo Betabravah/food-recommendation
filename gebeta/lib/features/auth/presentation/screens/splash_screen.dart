@@ -62,7 +62,7 @@ class SplashScreen extends StatelessWidget {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.transparent),
               elevation: MaterialStateProperty.all(0), // Set elevation to zero
-              minimumSize: MaterialStateProperty.all(Size(150, 50)),
+              minimumSize: MaterialStateProperty.all(const Size(150, 50)),
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
                   side: const BorderSide(color: AppColors.purple),

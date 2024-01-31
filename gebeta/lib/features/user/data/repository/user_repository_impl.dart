@@ -10,8 +10,8 @@ import '../datasources/remote/remote_datasource.dart';
 import '../models/user_model.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final RemoteDataSource remoteDataSource;
-  final LocalDataSource localDataSource;
+  final UserRemoteDataSource remoteDataSource;
+  final UserLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
   UserRepositoryImpl({

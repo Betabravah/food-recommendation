@@ -7,7 +7,7 @@ import '../repository/auth_repository.dart';
 class GetToken implements UseCase<void, NoParams> {
   final AuthRepository repository;
 
-  GetToken(this.repository);
+  GetToken(this.repository, );
 
   @override
   Future<Either<Failure, String>> call(NoParams params) async {

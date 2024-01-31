@@ -16,8 +16,12 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: Routes.home,
-      builder: (context, state) => HomePage(foods),
+      builder: (context, state) => SplashScreen(),
     ),
+    // GoRoute(
+    //   path: Routes.home,
+    //   builder: (context, state) => HomePage(foods),
+    // ),
     GoRoute(
       path: Routes.profile,
       builder: (context, state) => ProfilePage(user),

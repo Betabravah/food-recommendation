@@ -1,7 +1,7 @@
 import '../../../domain/entities/food.dart';
 import '../../models/food_model.dart';
 
-abstract class LocalDataSource {
+abstract class FoodLocalDataSource {
   Future<Food> getFood(String id);
   Future<List<Food>> getFoods();
 

@@ -21,10 +21,11 @@ final class GetSingleUserEvent extends UserEvent {
 }
 
 final class UpdateUserEvent extends UserEvent {
+  final String token;
   final User user;
 
-  const UpdateUserEvent(this.user);
+  const UpdateUserEvent(this.user, this.token);
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [user, token];
 }

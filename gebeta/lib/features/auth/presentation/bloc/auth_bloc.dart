@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.login,
     required this.logout,
     required this.signup,
-    required this.getToken,
+    required this.getToken, 
   }) : super(AuthInitialState()) {
     on<AuthLoginEvent>(_login);
     on<AuthLogoutEvent>(_logout);

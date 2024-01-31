@@ -8,10 +8,10 @@ import '../../../domain/entities/user.dart';
 import '../../models/user_model.dart';
 import 'local_datasource.dart';
 
-class LocalDataSourceImpl implements LocalDataSource {
+class UserLocalDataSourceImpl implements UserLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  LocalDataSourceImpl({required this.sharedPreferences});
+  UserLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> cacheToken(String token) {

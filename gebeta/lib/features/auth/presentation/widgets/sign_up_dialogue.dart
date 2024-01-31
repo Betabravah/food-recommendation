@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../user/presentation/bloc/user_bloc.dart';
+import '../bloc/auth_bloc.dart';
 import 'input_field.dart';
 
 class SignUpDialogue extends StatefulWidget {
@@ -43,11 +46,21 @@ class _SignUpDialogueState extends State<SignUpDialogue> {
           SizedBox(
             height: 60.h,
           ),
+          //      BlocProvider<AuthBloc>(
+          // create: (context) => AuthBloc(),
+          // child:
           Container(
               width: double.infinity,
               height: 45.h,
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text('Sign Up')))
+                  onPressed: () {
+                    //                 BlocProvider.of<AuthBloc>(context).add(AuthRegisterEvent(
+                    // username: 'exampleUsername',
+
+                    // password: 'examplePassword',
+                    // ));
+                  },
+                  child: const Text('Sign Up')))
         ],
       ),
     );

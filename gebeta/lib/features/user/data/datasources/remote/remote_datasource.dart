@@ -1,6 +1,6 @@
 import '../../models/user_model.dart';
 
-abstract class RemoteDataSource {
+abstract class UserRemoteDataSource {
   Future<UserModel> getUser(String token);
 
   Future<UserModel> updateUser(UserModel user);

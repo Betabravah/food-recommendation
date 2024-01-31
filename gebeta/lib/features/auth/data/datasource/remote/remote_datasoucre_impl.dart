@@ -18,7 +18,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AuthenticationModel> login(AuthModel authModel) async {
-    final http.Response response = await client.post('${apiBaseUrl}user/login',
+    final http.Response response = await client.post('$apiBaseUrl/auth/login',
         body: {'authModel': jsonEncode(authModel.toJson())},
         headers: {'Content-Type': 'application/json'});
 
@@ -37,7 +37,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AuthModel> signup(AuthModel authModel) async {
-    final http.Response response = await client.post('${apiBaseUrl}user',
+    final http.Response response = await client.post('$apiBaseUrl/auth/register',
         body: {'authModel': jsonEncode(authModel.toJson())},
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
