@@ -12,7 +12,7 @@ class FoodList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 450.h,
+      height: 430.h,
       child: ListView.builder(
           itemCount: foods.length,
           itemBuilder: (context, index) {
