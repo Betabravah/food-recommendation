@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../../../core/presentation/route/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/food.dart';
 import '../screens/food_detail.dart';

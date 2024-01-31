@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/food.dart';
 import '../widgets/custom_search_bar.dart';
