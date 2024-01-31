@@ -61,6 +61,7 @@ class UserRepositoryImpl implements UserRepository {
       UserModel userModel = UserModel(
           firstName: user.firstName,
           lastName: user.lastName,
+          username: user.username,
           email: user.email,
           password: user.password,
           height: user.height,

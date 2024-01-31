@@ -1,8 +1,28 @@
 import 'dart:ui';
 
 import '../../features/food/domain/entities/food.dart';
+import '../../features/user/domain/entities/user.dart';
 
 const apiBaseUrl = '';
+
+User user = const User(
+  username: 'sampleUsername',
+  email: 'sample@email.com',
+  // Optional fields can be omitted or set to null or a specific value
+  firstName: 'John',
+  lastName: 'Doe',
+  password: 'password123',
+  height: 175.0,
+  weight: 70.0,
+  upperArmLength: 25.0,
+  armCircumference: 30.0,
+  hipCircumference: 95.0,
+  waistCircumference: 80.0,
+  upperLegLength: 45.0,
+  systolic: 120,
+  diastolic: 80,
+  pulse: 70,
+);
 
 Food newFood = const Food(
     description:

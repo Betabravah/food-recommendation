@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/constants/constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../user/presentation/screens/profile_page.dart';
 import '../../domain/entities/food.dart';
 import '../widgets/custom_search_bar.dart';
 import '../widgets/display_card.dart';
@@ -27,17 +29,24 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(top: 50.h, left: 16.w, right: 16.w),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Hello👋',
-                    style: TextStyle(fontSize: 40, fontFamily: 'Poppins'),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text(
+                'Hello👋',
+                style: TextStyle(fontSize: 40, fontFamily: 'Poppins'),
+              ),
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProfilePage(user), // Pass food to FoodDetail
                   ),
-                  ProfileAvatar(
-                      image:
-                          'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
-                ]),
+                ),
+                child: ProfileAvatar(
+                    image:
+                        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+              )
+            ]),
             const CustomSearchBar(),
             SizedBox(
               height: 15.h,
