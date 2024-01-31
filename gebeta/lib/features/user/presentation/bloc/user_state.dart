@@ -31,9 +31,6 @@ final class UserUpdatedState extends UserState {
   List<Object> get props => [user];
 }
 
-
-
-
 final class UserErrorState extends UserState {
   final String message;
 

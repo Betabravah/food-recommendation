@@ -16,10 +16,8 @@ final class GetSingleUserEvent extends UserEvent {
 
   const GetSingleUserEvent(this.token);
 
-  
   @override
   List<Object> get props => [token];
-
 }
 
 final class UpdateUserEvent extends UserEvent {
@@ -30,5 +28,3 @@ final class UpdateUserEvent extends UserEvent {
   @override
   List<Object?> get props => [user];
 }
-
-
