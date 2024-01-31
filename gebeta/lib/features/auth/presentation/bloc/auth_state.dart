@@ -13,10 +13,10 @@ final class AuthLoading extends AuthState {}
 
 final class AuthSuccess extends AuthState {}
 
-final class AuthFailure extends AuthState {
+final class AuthError extends AuthState {
   final String message;
 
-  const AuthFailure(this.message);
+  const AuthError(this.message);
 
   @override
   List<Object> get props => [message];

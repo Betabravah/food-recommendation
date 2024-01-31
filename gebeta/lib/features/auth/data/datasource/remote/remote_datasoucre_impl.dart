@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +20,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<AuthenticationModel> login(AuthModel authModel) async {
     final http.Response response = await client.post('$apiBaseUrl/auth/login',
-        body: {'authModel': jsonEncode(authModel.toJson())},
+        body: authModel.toJson(),
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
@@ -27,7 +28,11 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       if (kDebugMode) {
         print('responseBody: $responseBody');
       }
-      return AuthenticationModel.fromJson(responseBody);
+      String token = responseBody['token'];
+      AuthenticationModel authenticationModel =
+          AuthenticationModel(token: token, userInfo: authModel);
+      print(authenticationModel);
+      return authenticationModel;
     } else if (response.statusCode == 400) {
       throw const LoginException(message: 'Invalid Credentials');
     } else {
@@ -37,12 +42,16 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AuthModel> signup(AuthModel authModel) async {
-    final http.Response response = await client.post('$apiBaseUrl/auth/register',
-        body: {'authModel': jsonEncode(authModel.toJson())},
+    final http.Response response = await client.post(
+        '$apiBaseUrl/auth/register',
+        body: authModel.toJson(),
         headers: {'Content-Type': 'application/json'});
-    if (response.statusCode == 200) {
-      final responseBody = jsonDecode(response.body);
-      return AuthModel.fromJson(responseBody['data']);
+
+    if (response.statusCode == 201) {
+      // final responseBody = jsonDecode(response.body);
+      // return AuthModel.fromJson(responseBody['data']);
+
+      return authModel;
     } else if (response.statusCode == 409 || response.statusCode == 400) {
       throw const SignUpException(message: 'Invalid information');
     } else {

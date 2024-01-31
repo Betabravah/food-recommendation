@@ -8,7 +8,7 @@ import '../repository/auth_repository.dart';
 class Logout extends UseCase<void, LogoutParams> {
   final AuthRepository repository;
 
-  Logout(this.repository, {required authRepository});
+  Logout({required this.repository});
 
   @override
   Future<Either<Failure, void>> call(LogoutParams params) async {

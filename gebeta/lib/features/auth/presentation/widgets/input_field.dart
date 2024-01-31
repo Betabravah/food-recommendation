@@ -4,13 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputField extends StatelessWidget {
   final String hint;
-  const InputField(this.hint, {super.key});
+  final TextEditingController controller;
+
+  const InputField(this.hint, {required this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45.h, // Set the desired height
+      height: 45.h,
       child: TextField(
+        controller: controller, // Use the provided controller
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w100),

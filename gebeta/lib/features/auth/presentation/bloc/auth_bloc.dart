@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/network/custom_client.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/usecases/usecases.dart';
@@ -12,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Logout logout;
   final Signup signup;
   final GetToken getToken;
+  final CustomClient customClient;
 
   String? _token;
 
@@ -21,7 +23,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.login,
     required this.logout,
     required this.signup,
-    required this.getToken, 
+    required this.getToken,
+    required this.customClient,
   }) : super(AuthInitialState()) {
     on<AuthLoginEvent>(_login);
     on<AuthLogoutEvent>(_logout);
@@ -35,11 +38,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (failure) => emit(
-        AuthFailure(
+        AuthError(
           failure.toString(),
         ),
       ),
-      (loginSuccess) => emit(UserAuthState(loginSuccess.token)),
+      (loginSuccess) {
+        customClient.authToken = loginSuccess.token;
+        _token = loginSuccess.token;
+
+        
+        emit(UserAuthState(loginSuccess.token));
+      },
     );
   }
 
@@ -49,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (failure) => emit(
-        AuthFailure(
+        AuthError(
           failure.toString(),
         ),
       ),
@@ -68,7 +77,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (failure) => emit(
-        AuthFailure(
+        AuthError(
           failure.toString(),
         ),
       ),
@@ -86,6 +95,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(const UserAuthState(null));
       },
       (token) {
+        customClient.authToken = token;
         _token = token;
         emit(UserAuthState(token));
       },

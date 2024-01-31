@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import './remote_datasoucre.dart';
 import '../../../../../core/constants/constants.dart';
@@ -31,7 +32,7 @@ class FoodRemoteDatasourceImpl implements FoodRemoteDataSource {
   Future<List<FoodModel>> getFoods() async {
     try {
       final response = await client.get('$apiBaseUrl/user/food');
-
+      print(response.body);
       if (response.statusCode == 200) {
         final decoded = jsonDecode(response.body);
         return Future.value(
@@ -47,8 +48,8 @@ class FoodRemoteDatasourceImpl implements FoodRemoteDataSource {
   @override
   Future<List<FoodModel>> filterFoods(String query) async {
     try {
-      final response = await client.get(
-          '$apiBaseUrl/food', queryParams: {'query': query});
+      final response =
+          await client.get('$apiBaseUrl/food', queryParams: {'query': query});
 
       if (response.statusCode == 200) {
         final decoded = jsonDecode(response.body);

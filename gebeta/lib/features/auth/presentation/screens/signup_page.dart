@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/injection/dependency_injection.dart';
 import '../../../../core/presentation/route/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../food/presentation/widgets/snack_bar.dart';
+import '../../../user/presentation/bloc/user_bloc.dart';
+import '../bloc/auth_bloc.dart';
 import '../widgets/sign_up_dialogue.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -12,7 +17,11 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        body: BlocProvider<AuthBloc>(
+      create: (context) => serviceLocator<AuthBloc>(),
+
+      //
+      child: Container(
         height: 935.h,
         child: SingleChildScrollView(
           child: Column(
@@ -28,10 +37,33 @@ class SignUpPage extends StatelessWidget {
                         image: AssetImage('assets/images/top-vegies.png'),
                       ),
                     ),
-                    Positioned(
-                      top: 250.h,
-                      child: SignUpDialogue(),
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        if (state is AuthLoading) {
+                          return CircularProgressIndicator();
+                        } else if (state is AuthError) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            showError(
+                                context,
+                                state
+                                    .message); // Show error message after build
+                          });
+                        }
+                        // Return normal UI for other states
+                        return Positioned(
+                          top: 250.h,
+                          child: SignUpDialogue(),
+                        );
+                      },
                     ),
+                    BlocListener<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthSuccess) {
+                          context.go(Routes.login);
+                        }
+                      },
+                      child: SizedBox.shrink(),
+                    )
                   ],
                 ),
               ),
@@ -44,7 +76,6 @@ class SignUpPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      
                       context.push(Routes.login);
                     },
                     child: const Text(
@@ -74,6 +105,6 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

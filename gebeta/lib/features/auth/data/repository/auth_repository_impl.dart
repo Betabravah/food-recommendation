@@ -17,7 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,
-    required this.networkInfo, 
+    required this.networkInfo,
   });
 
   @override
@@ -41,6 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
         localDataSource.cacheLoggedInUser(user);
         return Right(remoteLogin);
       } catch (e) {
+        print(e);
         return Left(ServerFailure());
       }
     } else {

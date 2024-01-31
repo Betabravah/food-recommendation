@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../../features/auth/presentation/screens/initial_screen.dart';
 import '../../../features/auth/presentation/screens/login_page.dart';
 import '../../../features/auth/presentation/screens/signup_page.dart';
 import '../../../features/auth/presentation/screens/splash_screen.dart';
@@ -16,12 +17,12 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: Routes.home,
-      builder: (context, state) => SplashScreen(),
+      builder: (context, state) => AppInitialScreen(),
     ),
-    // GoRoute(
-    //   path: Routes.home,
-    //   builder: (context, state) => HomePage(foods),
-    // ),
+    GoRoute(
+      path: Routes.foods,
+      builder: (context, state) => HomePage(),
+    ),
     GoRoute(
       path: Routes.profile,
       builder: (context, state) => ProfilePage(user),

@@ -14,6 +14,18 @@ class SignUpDialogue extends StatefulWidget {
 }
 
 class _SignUpDialogueState extends State<SignUpDialogue> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,45 +34,35 @@ class _SignUpDialogueState extends State<SignUpDialogue> {
       padding: EdgeInsets.all(20.h),
       decoration: BoxDecoration(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(
-            20.0), // Set the radius as per your preference
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Center(
-            child: Text('Sign Up'),
-          ),
-          SizedBox(
-            height: 30.h,
-          ),
-          const InputField('username'),
-          SizedBox(
-            height: 25.h,
-          ),
-          const InputField('password'),
-          SizedBox(
-            height: 25.h,
-          ),
-          const InputField('confirm password'),
-          SizedBox(
-            height: 60.h,
-          ),
-          //      BlocProvider<AuthBloc>(
-          // create: (context) => AuthBloc(),
-          // child:
+          const Center(child: Text('Sign Up')),
+          SizedBox(height: 30.h),
+          InputField('username', controller: _usernameController),
+          SizedBox(height: 25.h),
+          InputField('password', controller: _passwordController),
+          SizedBox(height: 25.h),
+          InputField('confirm password', controller: _confirmPasswordController),
+          SizedBox(height: 60.h),
           Container(
-              width: double.infinity,
-              height: 45.h,
-              child: ElevatedButton(
-                  onPressed: () {
-                    //                 BlocProvider.of<AuthBloc>(context).add(AuthRegisterEvent(
-                    // username: 'exampleUsername',
-
-                    // password: 'examplePassword',
-                    // ));
-                  },
-                  child: const Text('Sign Up')))
+            width: double.infinity,
+            height: 45.h,
+            child: ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<AuthBloc>(context).add(
+                  AuthRegisterEvent(
+                    _usernameController.text,
+                    _passwordController.text,
+                    // You can also use _confirmPasswordController.text if needed
+                  ),
+                );
+              },
+              child: const Text('Sign Up')
+            ),
+          ),
         ],
       ),
     );

@@ -14,13 +14,14 @@ class FoodList extends StatelessWidget {
     return SizedBox(
       height: 430.h,
       child: ListView.builder(
-          itemCount: foods.length,
-          itemBuilder: (context, index) {
-            Food food = foods[index];
-            return Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: FoodCard(food, index));
-          }),
+        itemCount: foods.length,
+        itemBuilder: (context, index) {
+          Food food = foods[index];
+          return Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: FoodCard(food, index));
+        },
+      ),
     );
   }
 }

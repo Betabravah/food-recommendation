@@ -74,7 +74,7 @@ class SplashScreen extends StatelessWidget {
               context.push(Routes.login);
             },
             child: const Text(
-              'Sign Up',
+              'Sign In',
               style: TextStyle(color: AppColors.purple),
             ),
           ),

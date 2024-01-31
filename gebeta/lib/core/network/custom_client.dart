@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 typedef KeyValue = Map<String, dynamic>;
@@ -22,10 +24,9 @@ class CustomClient {
       ...headers,
       if (_authToken != null) 'Authorization': 'Bearer $_authToken'
     };
-
+    
     return client.get(
-        Uri.parse('$apiBaseUrl$relativeUrl')
-            .replace(queryParameters: queryParams),
+        Uri.parse('$relativeUrl').replace(queryParameters: queryParams),
         headers: headersWithAuth);
   }
 
@@ -33,11 +34,12 @@ class CustomClient {
       {required KeyValue body, Headers headers = const {}}) async {
     Headers headersWithAuth = {
       ...headers,
-      if (_authToken != null) 'Authorization': 'Bearer $_authToken'
+      if (_authToken != null) 'Authorization': '$_authToken'
     };
+    print(relativeUrl);
 
-    return client.post(Uri.parse('$apiBaseUrl$relativeUrl'),
-        body: body, headers: headersWithAuth);
+    return client.post(Uri.parse('$relativeUrl'),
+        body: json.encode(body), headers: headersWithAuth);
   }
 
   Future<http.Response> put(String relativeUrl,
@@ -46,8 +48,8 @@ class CustomClient {
       ...headers,
       if (_authToken != null) 'Authorization': 'Bearer $_authToken'
     };
-    return client.put(Uri.parse('$apiBaseUrl$relativeUrl'),
-        body: body, headers: headersWithAuth);
+    return client.put(Uri.parse('$relativeUrl'),
+        body: json.encode(body), headers: headersWithAuth);
   }
 
   Future<http.Response> delete(String relativeUrl,
@@ -57,8 +59,7 @@ class CustomClient {
       if (_authToken != null) 'Authorization': 'Bearer $_authToken'
     };
 
-    return client.delete(Uri.parse('$apiBaseUrl$relativeUrl'),
-        headers: headersWithAuth);
+    return client.delete(Uri.parse('$relativeUrl'), headers: headersWithAuth);
   }
 
   // Future<http.StreamedResponse> multipartRequest(String relativeUrl,
@@ -72,7 +73,7 @@ class CustomClient {
 
   //   final request = http.MultipartRequest(
   //     method,
-  //     Uri.parse('$apiBaseUrl$relativeUrl'),
+  //     Uri.parse('$relativeUrl'),
   //   );
 
   //   request.headers.addAll(headersWithAuth);

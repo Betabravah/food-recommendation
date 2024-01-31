@@ -9,7 +9,9 @@ import '../../features/auth/data/datasource/remote/remote_datasoucre_impl.dart';
 import '../../features/auth/data/datasource/remote/remote_datasource.dart';
 import '../../features/auth/data/repository/auth_repository_impl.dart';
 import '../../features/auth/domain/repository/auth_repository.dart';
+import '../../features/auth/domain/usecases/get_token.dart';
 import '../../features/auth/domain/usecases/login.dart';
+import '../../features/auth/domain/usecases/logout.dart';
 import '../../features/auth/domain/usecases/signup.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/food/data/datasources/local/local_datasource.dart';
@@ -30,6 +32,7 @@ import '../../features/user/data/repository/user_repository_impl.dart';
 import '../../features/user/domain/repository/user_repository.dart';
 import '../../features/user/domain/usecases/get_user.dart';
 import '../../features/user/domain/usecases/update_user.dart';
+import '../../features/user/presentation/bloc/user_bloc.dart';
 import '../constants/constants.dart';
 import '../network/custom_client.dart';
 import '../network/network_info.dart';
@@ -46,11 +49,10 @@ Future<void> init() async {
 
   // Feature-User
   //! Bloc
-  serviceLocator.registerLazySingleton<UserRepository>(
-    () => UserRepositoryImpl(
-      networkInfo: serviceLocator(),
-      remoteDataSource: serviceLocator(),
-      localDataSource: serviceLocator(),
+  serviceLocator.registerFactory(
+    () => UserBloc(
+      getUser: serviceLocator(),
+      updateUser: serviceLocator(),
     ),
   );
 
@@ -127,6 +129,7 @@ Future<void> init() async {
       login: serviceLocator(),
       signup: serviceLocator(),
       logout: serviceLocator(),
+      customClient: serviceLocator(),
     ),
   );
 
@@ -139,6 +142,16 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton(
     () => Signup(
+      repository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetToken(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton(
+    () => Logout(
       repository: serviceLocator(),
     ),
   );
