@@ -62,7 +62,6 @@ class UserRepositoryImpl implements UserRepository {
           firstName: user.firstName,
           lastName: user.lastName,
           username: user.username,
-          email: user.email,
           password: user.password,
           height: user.height,
           weight: user.weight,

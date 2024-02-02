@@ -17,7 +17,7 @@ class FoodDetail extends StatelessWidget {
         children: [
           Positioned.fill(
             child: CachedNetworkImage(
-              imageUrl: food.photoUrl, // Use the photoUrl from the food object
+              imageUrl: food.images[0], // Use the photoUrl from the food object
               fit: BoxFit.cover,
               placeholder: (context, url) =>
                   const CircularProgressIndicator(), // Optional: placeholder widget

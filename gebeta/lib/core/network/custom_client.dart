@@ -10,6 +10,8 @@ class CustomClient {
 
   String? _authToken;
 
+  String? get authToken => _authToken;
+
   String apiBaseUrl;
 
   CustomClient(this.client, {required this.apiBaseUrl});
@@ -22,9 +24,9 @@ class CustomClient {
       {KeyValue? queryParams, Headers headers = const {}}) async {
     Headers headersWithAuth = {
       ...headers,
-      if (_authToken != null) 'Authorization': 'Bearer $_authToken'
+      if (_authToken != null) 'Authorization': '$_authToken'
     };
-    
+
     return client.get(
         Uri.parse('$relativeUrl').replace(queryParameters: queryParams),
         headers: headersWithAuth);
@@ -46,7 +48,7 @@ class CustomClient {
       {required KeyValue body, Headers headers = const {}}) async {
     Headers headersWithAuth = {
       ...headers,
-      if (_authToken != null) 'Authorization': 'Bearer $_authToken'
+      if (_authToken != null) 'Authorization': '$_authToken'
     };
     return client.put(Uri.parse('$relativeUrl'),
         body: json.encode(body), headers: headersWithAuth);
@@ -56,7 +58,7 @@ class CustomClient {
       {Headers headers = const {}}) async {
     Headers headersWithAuth = {
       ...headers,
-      if (_authToken != null) 'Authorization': 'Bearer $_authToken'
+      if (_authToken != null) 'Authorization': '$_authToken'
     };
 
     return client.delete(Uri.parse('$relativeUrl'), headers: headersWithAuth);

@@ -57,6 +57,7 @@ class FoodRepositoryImpl implements FoodRepository {
       }
     }
   }
+
   @override
   Future<Either<Failure, List<Food>>> filterFoods(String query) async {
     if (await networkInfo.isConnected) {
@@ -76,5 +77,4 @@ class FoodRepositoryImpl implements FoodRepository {
       }
     }
   }
-
 }

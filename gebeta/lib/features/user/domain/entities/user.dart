@@ -4,7 +4,6 @@ class User extends Equatable {
   final String? firstName;
   final String? lastName;
   final String username; // Required
-  final String email; // Required
   final String? password;
   final double? height;
   final double? weight;
@@ -21,7 +20,6 @@ class User extends Equatable {
     this.firstName,
     this.lastName,
     required this.username,
-    required this.email,
     this.password,
     this.height,
     this.weight,
@@ -40,7 +38,6 @@ class User extends Equatable {
         firstName,
         lastName,
         username,
-        email,
         password,
         height,
         weight,

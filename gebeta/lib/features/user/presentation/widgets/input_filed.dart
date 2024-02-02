@@ -4,17 +4,20 @@ import '../../../../core/theme/app_colors.dart';
 
 class CustomInputField extends StatelessWidget {
   final String type;
-  const CustomInputField(this.type, {super.key});
+  final String defaultValue;
+  final TextEditingController controller;
+
+  CustomInputField(this.type, this.controller,
+      {super.key, this.defaultValue = ''});
+
+  // @override
+  // void dispose() {
+  //   _textEditingController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _textEditingController =
-        TextEditingController();
-
-    @override
-    void dispose() {
-      _textEditingController.dispose();
-    }
+    controller.text = defaultValue;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
@@ -27,7 +30,7 @@ class CustomInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(1000),
         ),
         child: TextField(
-          controller: _textEditingController,
+          controller: controller,
           style: const TextStyle(
             color: AppColors.darkerPurple,
             fontFamily: 'Poppins',
@@ -42,7 +45,7 @@ class CustomInputField extends StatelessWidget {
               fontWeight: FontWeight.w200,
             ),
             contentPadding:
-               const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,

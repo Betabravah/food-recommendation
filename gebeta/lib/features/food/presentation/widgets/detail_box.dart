@@ -23,7 +23,7 @@ class DetailBox extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            food.name,
+            food.description,
             style: const TextStyle(
                 fontFamily: 'Poppins',
                 color: Colors.white,
@@ -44,7 +44,7 @@ class DetailBox extends StatelessWidget {
             children: [
               Tag(
                 0,
-                '${food.nutrients['nutrient_kcal']} kcal',
+                '${food.nutrition['nutrient_kcal']} kcal',
               ),
               SizedBox(
                 width: 30.w,

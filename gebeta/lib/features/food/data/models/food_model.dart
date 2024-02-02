@@ -1,35 +1,37 @@
+import 'dart:convert';
+
 import '../../domain/entities/food.dart';
 
 class FoodModel extends Food {
   FoodModel(
-      {required super.id,
-      required super.name,
-      required super.description,
-      required super.photoUrl,
-      required super.nutrients});
+      {required super.description,
+      required super.category,
+      required super.images,
+      required super.nutrition});
 
   factory FoodModel.fromJson(Map<String, dynamic> json) {
+    final nutrition = <String, double>{};
+
+    for (var entry in json['nutrition'].entries) {
+      nutrition[entry.key] = double.parse(entry.value.toString());
+    }
+
+    print(nutrition);
+
     return FoodModel(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      photoUrl: json['photoUrl'],
-      nutrients: (json['nutrients'] as Map<String, dynamic>).map(
-        (key, value) => MapEntry(
-          key,
-          value.toDouble(),
-        ),
-      ),
+      category: json['category'] as String,
+      description: json['description'] as String,
+      images: json['images'].map<String>((k) => k as String).toList(),
+      nutrition: nutrition,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
       'description': description,
-      'photoUrl': photoUrl,
-      'nutrients': nutrients
+      'images': images,
+      'nutrition': nutrition,
+      'category': category,
     };
   }
 }

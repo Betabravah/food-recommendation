@@ -25,7 +25,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.profile,
-      builder: (context, state) => ProfilePage(user),
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: Routes.splash,

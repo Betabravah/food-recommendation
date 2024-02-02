@@ -32,11 +32,16 @@ class FoodRemoteDatasourceImpl implements FoodRemoteDataSource {
   Future<List<FoodModel>> getFoods() async {
     try {
       final response = await client.get('$apiBaseUrl/user/food');
-      print(response.body);
+
       if (response.statusCode == 200) {
-        final decoded = jsonDecode(response.body);
-        return Future.value(
-            decoded.map<FoodModel>((map) => FoodModel.fromJson(map)).toList());
+        final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+
+        final foods = decoded['foods'] as List<dynamic>;
+
+        return foods
+            .map<FoodModel>(
+                (map) => FoodModel.fromJson(map as Map<String, dynamic>))
+            .toList();
       } else {
         throw const ServerException(message: 'Bad Request');
       }
@@ -52,9 +57,14 @@ class FoodRemoteDatasourceImpl implements FoodRemoteDataSource {
           await client.get('$apiBaseUrl/food', queryParams: {'query': query});
 
       if (response.statusCode == 200) {
-        final decoded = jsonDecode(response.body);
-        return Future.value(
-            decoded.map<FoodModel>((map) => FoodModel.fromJson(map)).toList());
+        final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+
+        final foods = decoded['foods'] as List<dynamic>;
+
+        return foods
+            .map<FoodModel>(
+                (map) => FoodModel.fromJson(map as Map<String, dynamic>))
+            .toList();
       } else {
         throw const ServerException(message: 'Bad Request');
       }

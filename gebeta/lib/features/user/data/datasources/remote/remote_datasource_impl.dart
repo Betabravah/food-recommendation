@@ -36,7 +36,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
-      return UserModel.fromJson(responseBody['data']);
+      return UserModel.fromJson(responseBody['user']);
     } else if (response.statusCode == 400) {
       throw const ServerException(message: 'Invalid Credentials');
     } else {
@@ -51,10 +51,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       body: {'user': jsonEncode(user.toJson())},
       headers: {'Content-Type': 'application/json'},
     );
-
+    print(response.body);
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
-      return UserModel.fromJson(responseBody['data']);
+      return UserModel.fromJson(responseBody['user']);
     } else if (response.statusCode == 400) {
       throw const ServerException(message: 'Invalid Credentials');
     } else {

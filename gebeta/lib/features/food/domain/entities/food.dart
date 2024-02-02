@@ -1,20 +1,22 @@
 import 'package:equatable/equatable.dart';
 
 class Food extends Equatable {
-  final String id;
-  final String name;
   final String description;
-  final String photoUrl;
-  final Map<String, double> nutrients;
+  final String category;
+  final List<String> images;
+  final Map<String, double> nutrition;
 
   const Food({
-    required this.id,
-    required this.name,
     required this.description,
-    required this.photoUrl,
-    required this.nutrients,
+    required this.category,
+    required this.images,
+    required this.nutrition,
   });
 
   @override
-  List<Object?> get props => [id, name, description, photoUrl, nutrients];
+  List<Object?> get props => [
+        category,
+        description,
+        images,
+      ];
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/User.dart';
+import '../../domain/entities/user.dart';
 
 sealed class UserState extends Equatable {
   const UserState();

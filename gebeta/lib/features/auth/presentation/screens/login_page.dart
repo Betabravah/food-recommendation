@@ -65,8 +65,6 @@ class LoginPage extends StatelessWidget {
                       BlocListener<AuthBloc, AuthState>(
                         listener: (context, state) {
                           if (state is UserAuthState) {
-                            
-                            print('1111111111111111111111');
                             context.go(Routes.foods);
                           }
                         },

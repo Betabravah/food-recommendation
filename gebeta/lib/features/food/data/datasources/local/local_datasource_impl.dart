@@ -16,7 +16,8 @@ class FoodLocalDatasourceImpl implements FoodLocalDataSource {
   Future<void> cacheFood(FoodModel food) async {
     final foods = await getFoods();
 
-    final foodIndex = foods.indexWhere((element) => element.id == food.id);
+    final foodIndex =
+        foods.indexWhere((element) => element.description == food.description);
 
     if (foodIndex == -1) {
       foods.add(food);
@@ -35,11 +36,11 @@ class FoodLocalDatasourceImpl implements FoodLocalDataSource {
   }
 
   @override
-  Future<FoodModel> getFood(String id) async {
+  Future<FoodModel> getFood(String description) async {
     final foods = await getFoods();
 
     for (final food in foods) {
-      if (food.id == id) {
+      if (food.description == description) {
         return food;
       }
     }

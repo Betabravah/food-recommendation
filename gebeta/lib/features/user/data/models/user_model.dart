@@ -5,7 +5,6 @@ class UserModel extends User {
     String? firstName,
     String? lastName,
     required String username,
-    required String email,
     String? password,
     double? height,
     double? weight,
@@ -21,7 +20,6 @@ class UserModel extends User {
           firstName: firstName,
           lastName: lastName,
           username: username,
-          email: email,
           password: password,
           height: height,
           weight: weight,
@@ -37,21 +35,35 @@ class UserModel extends User {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      firstName:
+          json.containsKey('firstName') ? json['firstName'] as String? : null,
+      lastName:
+          json.containsKey('firstName') ? json['firstName'] as String? : null,
       username: json['username'] as String, // Ensure this is a required field
-      email: json['email'] as String,
-      password: json['password'] as String?,
-      height: json['height'] as double?,
-      weight: json['weight'] as double?,
-      upperArmLength: json['upperArmLength'] as double?,
-      armCircumference: json['armCircumference'] as double?,
-      hipCircumference: json['hipCircumference'] as double?,
-      waistCircumference: json['waistCircumference'] as double?,
-      upperLegLength: json['upperLegLength'] as double?,
-      systolic: json['systolic'] as int?,
-      diastolic: json['diastolic'] as int?,
-      pulse: json['pulse'] as int?,
+
+      password:
+          json.containsKey('password') ? json['password'] as String? : null,
+      height: json.containsKey('height') ? json['height'] as double? : null,
+      weight: json.containsKey('weight') ? json['weight'] as double? : null,
+      upperArmLength: json.containsKey('upperArmLength')
+          ? json['upperArmLength'] as double?
+          : null,
+      armCircumference: json.containsKey('armCircumference')
+          ? json['armCircumference'] as double?
+          : null,
+      hipCircumference: json.containsKey('hipCircumference')
+          ? json['hipCircumference'] as double?
+          : null,
+      waistCircumference: json.containsKey('waistCircumference')
+          ? json['waistCircumference'] as double?
+          : null,
+      upperLegLength: json.containsKey('upperLegLength')
+          ? json['upperLegLength'] as double?
+          : null,
+      systolic: json.containsKey('systolic') ? json['systolic'] as int? : null,
+      diastolic:
+          json.containsKey('diastolic') ? json['diastolic'] as int? : null,
+      pulse: json.containsKey('pulse') ? json['pulse'] as int? : null,
     );
   }
 
@@ -60,7 +72,6 @@ class UserModel extends User {
       'firstName': firstName,
       'lastName': lastName,
       'username': username,
-      'email': email,
       'password': password,
       'height': height,
       'weight': weight,

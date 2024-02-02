@@ -40,7 +40,7 @@ class FoodCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: CachedNetworkImage(
-                    imageUrl: food.photoUrl,
+                    imageUrl: food.images[0],
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -52,16 +52,17 @@ class FoodCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    food.name,
+                    food.description,
                     style: const TextStyle(fontSize: 16),
                   ),
-                  Text(
-                      '${(food.nutrients['nutrient_kcal'])!.toInt()}kcal'
-                          .toString(),
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w100,
-                          color: AppColors.gray300)),
+                  if (food.nutrition.containsKey('nutrient_kcal'))
+                    Text(
+                        '${(food.nutrition['nutrient_kcal'])!.toInt()}kcal'
+                            .toString(),
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w100,
+                            color: AppColors.gray300)),
                   SizedBox(
                     height: 20.h,
                   )

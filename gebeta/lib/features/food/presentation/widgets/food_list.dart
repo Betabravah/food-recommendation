@@ -11,6 +11,8 @@ class FoodList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(foods.length);
+    print("<<<<<<<");
     return SizedBox(
       height: 430.h,
       child: ListView.builder(
