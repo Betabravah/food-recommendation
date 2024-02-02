@@ -15,8 +15,31 @@ import '../widgets/input_filed.dart';
 
 class ProfilePage extends StatelessWidget {
   // final User user;
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
   // const ProfilePage(this.user, {super.key});
+  final TextEditingController _fnameEditingController = TextEditingController();
+  final TextEditingController _lnameEditingController = TextEditingController();
+  final TextEditingController _usernameEditingController =
+      TextEditingController();
+  final TextEditingController _systolicEditingController =
+      TextEditingController();
+  final TextEditingController _diastolicEditingController =
+      TextEditingController();
+  final TextEditingController _pulseEditingController = TextEditingController();
+  final TextEditingController _heightEditingController =
+      TextEditingController();
+  final TextEditingController _weightEditingController =
+      TextEditingController();
+  final TextEditingController _upperArmEditingController =
+      TextEditingController();
+  final TextEditingController _upperLegEditingController =
+      TextEditingController();
+  final TextEditingController _armCirEditingController =
+      TextEditingController();
+  final TextEditingController _hipCirEditingController =
+      TextEditingController();
+  final TextEditingController _waistCirEditingController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,34 +65,8 @@ class ProfilePage extends StatelessWidget {
   Widget buildBody(BuildContext context, UserState state) {
     User? user;
 
-    final TextEditingController _fnameEditingController =
-        TextEditingController();
-    final TextEditingController _lnameEditingController =
-        TextEditingController();
-    final TextEditingController _usernameEditingController =
-        TextEditingController();
-    final TextEditingController _systolicEditingController =
-        TextEditingController();
-    final TextEditingController _diastolicEditingController =
-        TextEditingController();
-    final TextEditingController _pulseEditingController =
-        TextEditingController();
-    final TextEditingController _heightEditingController =
-        TextEditingController();
-    final TextEditingController _weightEditingController =
-        TextEditingController();
-    final TextEditingController _upperArmEditingController =
-        TextEditingController();
-    final TextEditingController _upperLegEditingController =
-        TextEditingController();
-    final TextEditingController _armCirEditingController =
-        TextEditingController();
-    final TextEditingController _hipCirEditingController =
-        TextEditingController();
-    final TextEditingController _waistCirEditingController =
-        TextEditingController();
-
     if (state is SingleUserLoadedState) {
+      print('fffffffffffffffffff');
       user = state.user;
     }
     if (state is UserUpdatedState) {
@@ -77,36 +74,43 @@ class ProfilePage extends StatelessWidget {
     }
 
     if (user != null) {
+      final h = mean_user_attributes['height'].toString();
+      print(h);
       _fnameEditingController.text = user.firstName ?? '';
       _lnameEditingController.text = user.lastName ?? '';
-      _usernameEditingController.text = user.username ?? '';
-      _systolicEditingController.text = user.systolic.toString() ??
-          mean_user_attributes['systolic'].toString();
-      _diastolicEditingController.text = user.diastolic.toString() ??
-          mean_user_attributes['diastolic'].toString();
+      _usernameEditingController.text = user.username;
+      _systolicEditingController.text =
+          (user.systolic ?? mean_user_attributes['systolic']).toString();
+
+      _diastolicEditingController.text =
+          (user.diastolic ?? mean_user_attributes['diastolic']).toString();
       _pulseEditingController.text =
-          user.pulse.toString() ?? mean_user_attributes['pulse'].toString();
+          (user.pulse ?? mean_user_attributes['pulse']).toString();
       _heightEditingController.text =
-          user.height.toString() ?? mean_user_attributes['height'].toString();
+          (user.height ?? mean_user_attributes['height']).toString();
       _weightEditingController.text =
-          user.weight.toString() ?? mean_user_attributes['weight'].toString();
-      _upperArmEditingController.text = user.upperArmLength.toString() ??
-          mean_user_attributes['upperArmLength'].toString();
-      _upperLegEditingController.text = user.upperLegLength.toString() ??
-          mean_user_attributes['upperLegLength'].toString();
-      _armCirEditingController.text = user.armCircumference.toString() ??
-          mean_user_attributes['armCircumference'].toString();
+          (user.weight ?? mean_user_attributes['weight']).toString();
+      _upperArmEditingController.text =
+          (user.upperArmLength ?? mean_user_attributes['upperArmLength'])
+              .toString();
+      _upperLegEditingController.text =
+          (user.upperLegLength ?? mean_user_attributes['upperLegLength'])
+              .toString();
+      _armCirEditingController.text =
+          (user.armCircumference ?? mean_user_attributes['armCircumference'])
+              .toString();
+
       _hipCirEditingController.text =
           mean_user_attributes['hipCircumference'].toString();
       _waistCirEditingController.text =
           mean_user_attributes['waistCircumference'].toString();
     } else {
-      _fnameEditingController.text =
-          mean_user_attributes['firstName'].toString() ?? '';
-      _lnameEditingController.text =
-          mean_user_attributes['lastName'].toString() ?? '';
-      _usernameEditingController.text =
-          mean_user_attributes['username'].toString() ?? '';
+      // _fnameEditingController.text =
+      //     mean_user_attributes['firstName'].toString() ?? '';
+      // _lnameEditingController.text =
+      //     mean_user_attributes['lastName'].toString() ?? '';
+      // _usernameEditingController.text =
+      //     mean_user_attributes['username'].toString() ?? '';
       _systolicEditingController.text =
           mean_user_attributes['systolic'].toString();
       _diastolicEditingController.text =
@@ -226,6 +230,8 @@ class ProfilePage extends StatelessWidget {
                   return const LoadingWidget();
                 } else if (state is SingleUserLoadedState ||
                     state is UserUpdatedState) {
+                  print('hi');
+                  print(user);
                   return Column(
                     children: [
                       CustomInputField('First Name', _fnameEditingController,
@@ -235,35 +241,57 @@ class ProfilePage extends StatelessWidget {
                       CustomInputField('Username', _usernameEditingController,
                           defaultValue: user?.username ?? ''),
                       CustomInputField('Height', _heightEditingController,
-                          defaultValue: user?.height.toString() ?? ''),
+                          defaultValue: user?.height == null
+                              ? mean_user_attributes['height']!.toString()
+                              : user?.height.toString() ?? ''),
                       CustomInputField('Weight', _weightEditingController,
-                          defaultValue: user?.weight.toString() ?? ''),
+                          defaultValue: user?.weight == null
+                              ? mean_user_attributes['Weight']!.toString()
+                              : user?.weight.toString() ?? ''),
                       CustomInputField(
                           'Upper Arm Length', _upperArmEditingController,
-                          defaultValue: user?.upperArmLength.toString() ?? ''),
+                          defaultValue: user?.upperArmLength == null
+                              ? mean_user_attributes['upper_arm_length']!
+                                  .toString()
+                              : user?.upperArmLength.toString() ?? ''),
                       CustomInputField(
                           'Upper Leg Length', _upperLegEditingController,
-                          defaultValue: user?.upperLegLength.toString() ?? ''),
+                          defaultValue: user?.upperLegLength == null
+                              ? mean_user_attributes['upper_leg_length']!
+                                  .toString()
+                              : user?.upperLegLength.toString() ?? ''),
                       CustomInputField(
                           'Arm Circumference', _armCirEditingController,
-                          defaultValue:
-                              user?.armCircumference.toString() ?? ''),
+                          defaultValue: user?.armCircumference == null
+                              ? mean_user_attributes['arm_circumference']!
+                                  .toString()
+                              : user?.armCircumference.toString() ?? ''),
                       CustomInputField(
                           'Hip Circumference', _hipCirEditingController,
-                          defaultValue:
-                              user?.hipCircumference.toString() ?? ''),
+                          defaultValue: user?.hipCircumference == null
+                              ? mean_user_attributes['hip_circumference']!
+                                  .toString()
+                              : user?.hipCircumference.toString() ?? ''),
                       CustomInputField(
                           'Waist Circumference', _waistCirEditingController,
-                          defaultValue:
-                              user?.waistCircumference.toString() ?? ''),
+                          defaultValue: user?.waistCircumference == null
+                              ? mean_user_attributes['waist_circumference']!
+                                  .toString()
+                              : user?.waistCircumference.toString() ?? ''),
                       CustomInputField(
                           'Systolic Blood Pressure', _systolicEditingController,
-                          defaultValue: user?.systolic.toString() ?? ''),
+                          defaultValue: user?.systolic == null
+                              ? mean_user_attributes['systolic']!.toString()
+                              : user?.systolic.toString() ?? ''),
                       CustomInputField('Diastolic Blood Pressure',
                           _diastolicEditingController,
-                          defaultValue: user?.diastolic.toString() ?? ''),
+                          defaultValue: user?.diastolic == null
+                              ? mean_user_attributes['diastolic']!.toString()
+                              : user?.diastolic.toString() ?? ''),
                       CustomInputField('Pulse Rate', _pulseEditingController,
-                          defaultValue: user?.pulse.toString() ?? ''),
+                          defaultValue: user?.pulse == null
+                              ? mean_user_attributes['pulse']!.toString()
+                              : user?.pulse.toString() ?? ''),
                       SizedBox(
                         height: 40.h,
                       ),

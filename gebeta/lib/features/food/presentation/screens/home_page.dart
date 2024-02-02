@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/injection/dependency_injection.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../user/presentation/bloc/user_bloc.dart';
 import '../../../user/presentation/screens/profile_page.dart';
 import '../../domain/entities/food.dart';
 import '../bloc/food_bloc.dart';
@@ -34,6 +36,12 @@ class _HomePageState extends State<HomePage> {
               create: (context) =>
                   serviceLocator<FoodBloc>()..add(LoadAllFoodsEvent()),
             ),
+            BlocProvider(
+              create: (context) => serviceLocator<UserBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => serviceLocator<AuthBloc>(),
+            ),
           ],
           child: BlocBuilder<FoodBloc, FoodState>(
             builder: (context, _) => buildBody(context),
@@ -53,14 +61,20 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 40, fontFamily: 'Poppins'),
             ),
             GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const ProfilePage(), // Pass food to FoodDetail
-                ),
-              ).then((e) =>
-                  BlocProvider.of<FoodBloc>(context).add(LoadAllFoodsEvent())),
+              onTap: () {
+                // BlocProvider.of<AuthBloc>(context).add(GetTokenEvent());
+                final token = BlocProvider.of<AuthBloc>(context).authToken;
+                BlocProvider.of<UserBloc>(context)
+                    .add(GetSingleUserEvent(token));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                         ProfilePage(), // Pass food to FoodDetail
+                  ),
+                ).then((e) => BlocProvider.of<FoodBloc>(context)
+                    .add(LoadAllFoodsEvent()));
+              },
               child: const ProfileAvatar(
                   image:
                       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),

@@ -6,7 +6,6 @@ import '../../../features/auth/presentation/screens/signup_page.dart';
 import '../../../features/auth/presentation/screens/splash_screen.dart';
 import '../../../features/food/presentation/screens/food_detail.dart';
 import '../../../features/food/presentation/screens/home_page.dart';
-import '../../../features/user/domain/entities/user.dart';
 import '../../../features/user/presentation/screens/profile_page.dart';
 import '../../constants/constants.dart';
 import 'routes.dart';
@@ -25,7 +24,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.profile,
-      builder: (context, state) => const ProfilePage(),
+      builder: (context, state) =>  ProfilePage(),
     ),
     GoRoute(
       path: Routes.splash,

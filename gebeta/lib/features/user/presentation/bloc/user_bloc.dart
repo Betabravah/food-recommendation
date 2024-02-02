@@ -27,7 +27,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     final result = await getUser(GetUserParams(token: event.token));
 
-    print('ajdhfjdshkfj');
+    print('result: $result');
 
     result.fold(
       (failure) => emit(UserErrorState(failure.toString())),

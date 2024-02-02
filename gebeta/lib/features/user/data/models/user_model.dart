@@ -38,7 +38,7 @@ class UserModel extends User {
       firstName:
           json.containsKey('firstName') ? json['firstName'] as String? : null,
       lastName:
-          json.containsKey('firstName') ? json['firstName'] as String? : null,
+          json.containsKey('lastName') ? json['lastName'] as String? : null,
       username: json['username'] as String, // Ensure this is a required field
 
       password:

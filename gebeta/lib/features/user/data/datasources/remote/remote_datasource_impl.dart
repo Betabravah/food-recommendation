@@ -46,9 +46,14 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   @override
   Future<UserModel> updateUser(UserModel user) async {
+    final data = user.toJson();
+    data.remove('username');
+    data.remove('password');
+    data.remove('_id');
+
     final http.Response response = await client.post(
       '$apiBaseUrl/user/profile',
-      body: {'user': jsonEncode(user.toJson())},
+      body: data,
       headers: {'Content-Type': 'application/json'},
     );
     print(response.body);
